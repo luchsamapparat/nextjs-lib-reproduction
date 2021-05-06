@@ -1,21 +1,10 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
+  "cli": { "defaultCollection": "@nrwl/next" },
   "defaultProject": "nextjsapp",
   "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint"
-      }
-    }
+    "@nrwl/react": { "application": { "babel": true } },
+    "@nrwl/next": { "application": { "style": "scss", "linter": "eslint" } }
   },
   "projects": {
     "nextjsapp": {
@@ -30,16 +19,11 @@
             "root": "apps/nextjsapp",
             "outputPath": "dist/apps/nextjsapp"
           },
-          "configurations": {
-            "production": {}
-          }
+          "configurations": { "production": {} }
         },
         "serve": {
           "executor": "@nrwl/next:server",
-          "options": {
-            "buildTarget": "nextjsapp:build",
-            "dev": true
-          },
+          "options": { "buildTarget": "nextjsapp:build", "dev": true },
           "configurations": {
             "production": {
               "buildTarget": "nextjsapp:build:production",
@@ -49,9 +33,7 @@
         },
         "export": {
           "executor": "@nrwl/next:export",
-          "options": {
-            "buildTarget": "nextjsapp:build:production"
-          }
+          "options": { "buildTarget": "nextjsapp:build:production" }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -82,15 +64,30 @@
             "devServerTarget": "nextjsapp:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "nextjsapp:serve:production"
-            }
+            "production": { "devServerTarget": "nextjsapp:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/nextjsapp-e2e/**/*.{js,ts}"] }
+        }
+      }
+    },
+    "foo": {
+      "root": "libs/foo",
+      "sourceRoot": "libs/foo/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/foo/**/*.{ts,tsx,js,jsx}"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/foo"],
           "options": {
-            "lintFilePatterns": ["apps/nextjsapp-e2e/**/*.{js,ts}"]
+            "jestConfig": "libs/foo/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
